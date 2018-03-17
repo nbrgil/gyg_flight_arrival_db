@@ -1,0 +1,7 @@
+{
+  "HOST":"localhost",
+  "DB":"FlightArrival",
+  "USER":"devuser",
+  "PWD":"devpass",
+  "PORT":"5432"
+}

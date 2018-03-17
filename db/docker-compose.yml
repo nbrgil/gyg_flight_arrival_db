@@ -1,0 +1,18 @@
+version: '2'
+services:
+    postgres:
+        container_name: postgres
+        build: ""
+        image: postgres-dw
+        ports:
+          - 5432:5432
+        environment:
+          - POSTGRES_USER=devuser
+          - POSTGRES_PASSWORD=devpass
+          - POSTGRES_DB=FlightArrival
+
+    pgadmin:
+        container_name: pgadmin4
+        image: fenglc/pgadmin4
+        ports:
+          - 5050:5050
