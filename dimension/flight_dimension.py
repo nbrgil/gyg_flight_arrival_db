@@ -12,12 +12,20 @@ class FlightDimension():
 		self.year = year
 		self.db_client = get_db_client()
 
-	def file_to_df(self):
+	def query_from_db(self):
+		return pd.read_sql(
+			sql="""
+				SELECT flight_number, tail_number
+				FROM flight_dimension
+			""",
+			con=self.db_client.get_conn_engine()
+		)
+
+	def file_to_df(self, chunksize=None):
 		df = pd.read_csv(
 			filepath_or_buffer=os.path.join(ROOT_DIR, "raw", "{}.csv.bz2".format(self.year)),
-			sep=",", compression="bz2", encoding="utf-8", usecols=["FlightNum", "TailNum"])
-
-		df.drop_duplicates()
+			sep=",", compression="bz2", encoding="utf-8", usecols=["FlightNum", "TailNum"],
+			chunksize=chunksize)
 
 		return df
 
@@ -41,6 +49,7 @@ class FlightDimension():
 
 	def run(self):
 		df = self.file_to_df()
+		df.drop_duplicates(inplace=True)
 		self.save(df)
 
 

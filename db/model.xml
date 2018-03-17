@@ -14,7 +14,7 @@
         </Counter>
         <Counter>
             <Name>column</Name>
-            <Value>59</Value>
+            <Value>60</Value>
             <Prefix>c</Prefix>
         </Counter>
         <Counter>
@@ -34,7 +34,7 @@
         </Counter>
         <Counter>
             <Name>alternate_key</Name>
-            <Value>0</Value>
+            <Value>1</Value>
             <Prefix>a</Prefix>
         </Counter>
         <Counter>
@@ -249,7 +249,7 @@
                     <Name>carrier_delay</Name>
                     <Type>int</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -258,7 +258,7 @@
                     <Name>weather_delay</Name>
                     <Type>int</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -267,7 +267,7 @@
                     <Name>nas_delay</Name>
                     <Type>int</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -276,7 +276,7 @@
                     <Name>security_delay</Name>
                     <Type>int</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -285,45 +285,12 @@
                     <Name>late_aircraft_delay</Name>
                     <Type>int</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
-                    <DefaultValue></DefaultValue>
-                    <CheckExpression></CheckExpression>
-                    <Properties/>
-                </Column>
-                <Column Id="c33">
-                    <Name>flight_dimension_sk_flight</Name>
-                    <Type>int</Type>
-                    <Description></Description>
-                    <Nullable>false</Nullable>
-                    <DefaultValue></DefaultValue>
-                    <CheckExpression></CheckExpression>
-                    <Properties/>
-                </Column>
-                <Column Id="c34">
-                    <Name>date_dimension_sk_date</Name>
-                    <Type>int</Type>
-                    <Description></Description>
-                    <Nullable>false</Nullable>
-                    <DefaultValue></DefaultValue>
-                    <CheckExpression></CheckExpression>
-                    <Properties/>
-                </Column>
-                <Column Id="c58">
-                    <Name>cancel_dimension_sk_cancel</Name>
-                    <Type>int</Type>
-                    <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
                 </Column>
             </Columns>
-            <PrimaryKey>
-                <Name></Name>
-                <Columns>
-                    <Column>c4</Column>
-                </Columns>
-            </PrimaryKey>
             <AlternateKeys/>
             <Indexes/>
             <TableChecks/>
@@ -337,7 +304,7 @@
             <Columns>
                 <Column Id="c23">
                     <Name>sk_flight</Name>
-                    <Type>int</Type>
+                    <Type>serial</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -382,7 +349,7 @@
             <Columns>
                 <Column Id="c27">
                     <Name>sk_date</Name>
-                    <Type>int</Type>
+                    <Type>serial</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -454,7 +421,7 @@
             <Columns>
                 <Column Id="c35">
                     <Name>sk_carrier</Name>
-                    <Type>int</Type>
+                    <Type>serial</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -463,7 +430,7 @@
                 </Column>
                 <Column Id="c36">
                     <Name>code</Name>
-                    <Type>varchar(5)</Type>
+                    <Type>varchar(10)</Type>
                     <Description></Description>
                     <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
@@ -499,7 +466,7 @@
             <Columns>
                 <Column Id="c39">
                     <Name>sk_travel</Name>
-                    <Type>int</Type>
+                    <Type>serial</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -510,7 +477,7 @@
                     <Name>origin_airport_iata</Name>
                     <Type>varchar(5)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -519,7 +486,7 @@
                     <Name>origin_airport_name</Name>
                     <Type>varchar(100)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -546,7 +513,7 @@
                     <Name>origin_country</Name>
                     <Type>varchar(3)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -555,7 +522,7 @@
                     <Name>origin_longitude</Name>
                     <Type>real</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -564,7 +531,7 @@
                     <Name>origin_latitude</Name>
                     <Type>real</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -573,7 +540,7 @@
                     <Name>dest_airport_iata</Name>
                     <Type>varchar(5)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -582,7 +549,7 @@
                     <Name>dest_airport_name</Name>
                     <Type>varchar(100)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -609,7 +576,7 @@
                     <Name>dest_country</Name>
                     <Type>varchar(3)</Type>
                     <Description></Description>
-                    <Nullable>true</Nullable>
+                    <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -618,7 +585,7 @@
                     <Name>dest_longitude</Name>
                     <Type>real</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
@@ -627,13 +594,13 @@
                     <Name>dest_latitude</Name>
                     <Type>real</Type>
                     <Description></Description>
-                    <Nullable>false</Nullable>
+                    <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
                     <CheckExpression></CheckExpression>
                     <Properties/>
                 </Column>
                 <Column Id="c54">
-                    <Name>flight_arrival_fact_sk_flight</Name>
+                    <Name>distance</Name>
                     <Type>int</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
@@ -661,7 +628,7 @@
             <Columns>
                 <Column Id="c55">
                     <Name>sk_cancel</Name>
-                    <Type>int</Type>
+                    <Type>serial</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -671,6 +638,15 @@
                 <Column Id="c56">
                     <Name>is_cancelled</Name>
                     <Type>int</Type>
+                    <Description></Description>
+                    <Nullable>false</Nullable>
+                    <DefaultValue></DefaultValue>
+                    <CheckExpression></CheckExpression>
+                    <Properties/>
+                </Column>
+                <Column Id="c60">
+                    <Name>cancellation_code</Name>
+                    <Type>varchar(1)</Type>
                     <Description></Description>
                     <Nullable>true</Nullable>
                     <DefaultValue></DefaultValue>
@@ -828,7 +804,7 @@
             <X>7252.5</X>
             <Y>6700.5</Y>
             <Width>158.0</Width>
-            <Height>113.0</Height>
+            <Height>116.0</Height>
             <LineColor>#000000</LineColor>
             <FillColor>#ffffff</FillColor>
             <Table>t3</Table>
@@ -857,8 +833,8 @@
         <TableDisplay Id="td6">
             <X>6930.5</X>
             <Y>7211.5</Y>
-            <Width>168.0</Width>
-            <Height>73.0</Height>
+            <Width>198.0</Width>
+            <Height>87.0</Height>
             <LineColor>#000000</LineColor>
             <FillColor>#ffffff</FillColor>
             <Table>t6</Table>

@@ -19,3 +19,14 @@ def get_db_client():
 		postgres = PostgresClient(auth_path=os.path.join(ROOT_DIR, "auth", "postgres.json"))
 
 	return postgres
+
+
+def sum_lists_without_duplicates(first: list, second: list):
+	"""
+		Faz a junção de duas listas, removendo os duplicados
+		Ex: [1, 2] + [1, 3] = [1, 2, 3]
+	:param first:
+	:param second:
+	:return:
+	"""
+	return first + list(set(second) - set(first))

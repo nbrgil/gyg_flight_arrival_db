@@ -1,11 +1,12 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-03-17 15:26:46.943
+-- Last modification date: 2018-03-17 20:31:06.625
 
 -- tables
 -- Table: cancel_dimension
 CREATE TABLE cancel_dimension (
     sk_cancel serial  NOT NULL,
-    is_cancelled int  NULL,
+    is_cancelled int  NOT NULL,
+    cancellation_code varchar(1)  NULL,
     reason varchar(10)  NOT NULL,
     CONSTRAINT cancel_dimension_pk PRIMARY KEY (sk_cancel)
 );
@@ -13,7 +14,7 @@ CREATE TABLE cancel_dimension (
 -- Table: carrier_dimension
 CREATE TABLE carrier_dimension (
     sk_carrier serial  NOT NULL,
-    code varchar(5)  NULL,
+    code varchar(10)  NULL,
     description varchar(100)  NULL,
     CONSTRAINT carrier_dimension_pk PRIMARY KEY (sk_carrier)
 );
@@ -48,15 +49,11 @@ CREATE TABLE flight_arrival_fact (
     taxi_in_time int  NOT NULL,
     taxi_out_time int  NOT NULL,
     diverted int  NOT NULL,
-    carrier_delay int  NOT NULL,
-    weather_delay int  NOT NULL,
-    nas_delay int  NOT NULL,
-    security_delay int  NOT NULL,
-    late_aircraft_delay int  NOT NULL,
-    flight_dimension_sk_flight int  NOT NULL,
-    date_dimension_sk_date int  NOT NULL,
-    cancel_dimension_sk_cancel int  NOT NULL,
-    CONSTRAINT flight_arrival_fact_pk PRIMARY KEY (sk_flight)
+    carrier_delay int  NULL,
+    weather_delay int  NULL,
+    nas_delay int  NULL,
+    security_delay int  NULL,
+    late_aircraft_delay int  NULL
 );
 
 -- Table: flight_dimension
@@ -70,21 +67,21 @@ CREATE TABLE flight_dimension (
 -- Table: travel_dimension
 CREATE TABLE travel_dimension (
     sk_travel serial  NOT NULL,
-    origin_airport_iata varchar(5)  NULL,
-    origin_airport_name varchar(100)  NULL,
+    origin_airport_iata varchar(5)  NOT NULL,
+    origin_airport_name varchar(100)  NOT NULL,
     origin_city varchar(100)  NULL,
     origin_state varchar(2)  NULL,
-    origin_country varchar(3)  NULL,
-    origin_longitude real  NOT NULL,
-    origin_latitude real  NOT NULL,
-    dest_airport_iata varchar(5)  NULL,
-    dest_airport_name varchar(100)  NULL,
+    origin_country varchar(3)  NOT NULL,
+    origin_longitude real  NULL,
+    origin_latitude real  NULL,
+    dest_airport_iata varchar(5)  NOT NULL,
+    dest_airport_name varchar(100)  NOT NULL,
     dest_city varchar(100)  NULL,
     dest_state varchar(2)  NULL,
-    dest_country varchar(3)  NULL,
-    dest_longitude real  NOT NULL,
-    dest_latitude real  NOT NULL,
-    flight_arrival_fact_sk_flight int  NOT NULL,
+    dest_country varchar(3)  NOT NULL,
+    dest_longitude real  NULL,
+    dest_latitude real  NULL,
+    distance int  NOT NULL,
     CONSTRAINT travel_dimension_pk PRIMARY KEY (sk_travel)
 );
 
