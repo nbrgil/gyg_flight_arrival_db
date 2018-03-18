@@ -8,12 +8,20 @@ import logging
 
 
 class FlightArrivalFact():
+	"""
+		Load flight arrival fact table
+	"""
 
 	def __init__(self, year):
 		self.year = year
 		self.db_client = get_db_client()
 
 	def file_to_df(self, chunksize=None):
+		"""
+			Load flight arrival to a dataframe
+		:param chunksize: number of records
+		:return: Dataframe iterator
+		"""
 		df = pd.read_csv(
 			filepath_or_buffer=os.path.join(ROOT_DIR, "raw", "{}.csv.bz2".format(self.year)),
 			sep=",", compression="bz2", encoding="utf-8", chunksize=chunksize
@@ -24,6 +32,17 @@ class FlightArrivalFact():
 	def simple_lookup(
 			self, df: pd.DataFrame, dim_table_name: str, df_columns: list, dim_columns: list, sk_name: str = None,
 			dimension_custom_query: str = None, drop_non_sk_after: bool = True):
+		"""
+			Lookup between main dataframe and a dimension, checking if any records were lost.
+		:param df: Dataframe
+		:param dim_table_name: Dimension dataframe
+		:param df_columns: Dataframe column list
+		:param dim_columns: Dimension column list
+		:param sk_name: Surrogate key of the dimension
+		:param dimension_custom_query: Custom query (to change the default sql)
+		:param drop_non_sk_after: Indicates if all the columns added, except the sk, should be dropped.
+		:return:
+		"""
 		start_time = time.time()
 
 		if dimension_custom_query is None:
@@ -52,6 +71,7 @@ class FlightArrivalFact():
 		return df
 
 	def save(self, df):
+		"""Save the table"""
 		conn = self.db_client.get_conn_engine().raw_connection()
 		cur = conn.cursor()
 
@@ -70,6 +90,11 @@ class FlightArrivalFact():
 				conn.close()
 
 	def apply_lookup(self, df):
+		"""
+			Calls all lookups, indicating the join columns
+		:param df: Dataframe
+		:return: Dataframe with new sk columns
+		"""
 
 		df = self.simple_lookup(
 			df=df,
@@ -114,6 +139,11 @@ class FlightArrivalFact():
 		return df
 
 	def transform(self, df):
+		"""
+			Transformations: Rename columns, change columns type and change the format of 'time' columns.
+		:param df: Dataframe
+		:return: Dataframe transformed
+		"""
 
 		df = df.rename(
 			columns={

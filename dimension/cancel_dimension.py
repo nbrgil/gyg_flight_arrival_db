@@ -102,6 +102,8 @@ class CancelDimension(BaseDimension):
 			)
 
 			if len(df_result) > 0:
+				# df_result.drop(self.table_columns, axis=1, inplace=True)
+
 				self.save(
 					df=df_result,
 					table_name="cancel_dimension",

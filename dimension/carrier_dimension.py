@@ -6,6 +6,10 @@ from dimension.base_dimension import BaseDimension
 
 
 class CarrierDimension(BaseDimension):
+	"""
+		Loads data to the carrier dimension.
+		The data source is a file in raw/carriers.csv
+	"""
 
 	def __init__(self):
 		"""
@@ -58,11 +62,10 @@ class CarrierDimension(BaseDimension):
 		)
 
 		if len(df_result) > 0:
-			df_result.drop(["_merge"] + self.table_columns, axis=1)
 
 			self.save(
 				df=df_result,
-				table_name="cancel_dimension",
+				table_name="carrier_dimension",
 				df_columns=self.file_columns,
 				table_colums=self.table_columns
 			)

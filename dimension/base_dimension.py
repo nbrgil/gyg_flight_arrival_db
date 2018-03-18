@@ -27,6 +27,8 @@ class BaseDimension():
 			suffixes=('', '_y')
 		).query("_merge == 'left_only'")
 
+		df_result.drop("_merge", axis=1, inplace=True)
+
 		return df_result
 
 	def save(self, df, table_name, df_columns=None, table_colums=None):
@@ -43,8 +45,8 @@ class BaseDimension():
 				df=df,
 				table_name=table_name,
 				commit_connection=conn,
-				columns=df_columns,
-				df_columns=table_colums,
+				columns=table_colums,
+				df_columns=df_columns,
 				cursor=cur,
 				index=False
 			)
