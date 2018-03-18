@@ -1,3 +1,5 @@
+# This docker compose is used to create a dev environ, with pgadmin 4
+
 version: '2'
 services:
     postgres:

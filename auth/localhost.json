@@ -1,5 +1,5 @@
 {
-  "HOST":"postgres",
+  "HOST":"localhost",
   "DB":"FlightArrival",
   "USER":"devuser",
   "PWD":"devpass",

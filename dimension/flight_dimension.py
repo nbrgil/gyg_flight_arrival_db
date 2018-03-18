@@ -50,7 +50,19 @@ class FlightDimension():
 	def run(self):
 		df = self.file_to_df()
 		df.drop_duplicates(inplace=True)
-		self.save(df)
+		df_db = self.query_from_db()
+		df_result = pd.merge(
+			left=df,
+			right=df_db,
+			how="left",
+			left_on=["FlightNum", "TailNum"],
+			right_on=["flight_number", "tail_number"],
+			indicator=True,
+			suffixes=('', '_y')
+		).query("_merge == 'left_only'").drop(
+			["_merge", "flight_number", "tail_number"], axis=1
+		)
+		self.save(df_result)
 
 
 if __name__ == "__main__":

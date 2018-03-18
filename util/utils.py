@@ -16,7 +16,8 @@ def download_file(url, file_name):
 def get_db_client():
 	global postgres
 	if postgres is None:
-		postgres = PostgresClient(auth_path=os.path.join(ROOT_DIR, "auth", "postgres.json"))
+		postgres = PostgresClient(
+			auth_path=os.path.join(ROOT_DIR, "auth", "{}.json".format(os.getenv("PGHOST", "localhost"))))
 
 	return postgres
 

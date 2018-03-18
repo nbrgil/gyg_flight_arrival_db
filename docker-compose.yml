@@ -1,0 +1,23 @@
+version: '2'
+services:
+    postgres:
+        container_name: postgres
+        build: "db/"
+        image: postgres-dw
+        ports:
+          - 5432:5432
+        environment:
+          - POSTGRES_USER=devuser
+          - POSTGRES_PASSWORD=devpass
+          - POSTGRES_DB=FlightArrival
+
+    flight_arrival_etl:
+        container_name: flight_arrival_etl
+        build: .
+        image: flight_arrival_etl
+        environment:
+            - PYTHONPATH=/code/
+            - FL_ARR_YEAR=2007
+            - PGHOST=postgres
+        entrypoint: python /code/run.py
+        working_dir: /code/
